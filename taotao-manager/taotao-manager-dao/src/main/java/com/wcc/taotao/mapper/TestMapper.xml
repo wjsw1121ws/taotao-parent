@@ -1,0 +1,12 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wcc.taotao.mapper.TestMapper">
+    <select id="selectNow" resultType="String">
+        select now()
+    </select>
+
+    <select id="testPageHelp" resultType="TbItem">
+        select * from tb_item
+    </select>
+</mapper>

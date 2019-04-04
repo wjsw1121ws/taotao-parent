@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="freemarker" />
+        <module name="tao-tao-portal-web" />
+        <module name="taotao-cart-interface" />
+        <module name="taotao-cart-service" />
+        <module name="taotao-cart-web" />
+        <module name="taotao-common" />
+        <module name="taotao-content-interface" />
+        <module name="taotao-content-service" />
+        <module name="taotao-item-web" />
+        <module name="taotao-manager-dao" />
+        <module name="taotao-manager-interface" />
+        <module name="taotao-manager-pojo" />
+        <module name="taotao-manager-service" />
+        <module name="taotao-manager-web" />
+        <module name="taotao-order-interface" />
+        <module name="taotao-order-service" />
+        <module name="taotao-order-web" />
+        <module name="taotao-portal-web" />
+        <module name="taotao-search-interface" />
+        <module name="taotao-search-service" />
+        <module name="taotao-search-web" />
+        <module name="taotao-sso-interface" />
+        <module name="taotao-sso-service" />
+        <module name="taotao-sso-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="taotaoorderweb" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

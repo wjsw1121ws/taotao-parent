@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean name="targetConnection" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<constructor-arg name="brokerURL" value="tcp://192.168.25.133:61616"/>
+	</bean>
+
+	<!--通过connectionFactory指定真正的工厂-->
+	<bean name="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+		<constructor-arg name="targetConnectionFactory" ref="targetConnection"/>
+	</bean>
+
+	<!--<bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">-->
+	<!--<constructor-arg name="name" value="item-change-queue"/>-->
+	<!--</bean>-->
+
+	<bean name="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg name="name" value="item-change-topic"/>
+	</bean>
+
+	<!--MessageListener初始化-->
+	<bean name="itemChangeMessageListener" class="com.wcc.taotao.search.listener.ItemChangeMessageListener"/>
+
+	<!--设置默认监听容器-->
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory"/>
+		<property name="destination" ref="topicDestination"/>
+		<property name="messageListener" ref="itemChangeMessageListener"/>
+	</bean>
+</beans>
